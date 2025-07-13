@@ -21,7 +21,7 @@ class authcontroller extends Controller
             "Firstname" => 'required|between:3,9',
             "Lastname" => 'required|between:3,9',
             "photo" => "nullable",
-            "gender" => 'required|in:0,1',
+            "gender" => 'required|in:male,female',
             "date_of_birth" => "required|date:Y-m-d", #....
             "email" => 'required|unique:users,email|email',
             "password" => "required|between:8,16|confirmed"
@@ -37,6 +37,12 @@ class authcontroller extends Controller
         } else {
             $url_photo = null;
         }
+
+        if ($request->gender === "male") {
+            $gender = 0;
+        } else if ($request->gender === "female") {
+            $gender = 1;
+        }
         //return $image;
         // توليد اسم عشوائي للصورة
 
@@ -44,7 +50,7 @@ class authcontroller extends Controller
         $user->first_name = $request->Firstname;
         $user->last_name = $request->Lastname;
         $user->photo = $url_photo;
-        $user->gender = $request->gender;
+        $user->gender = $gender;
         $user->email = $request->email;
         $user->date_of_birth = $request->date_of_birth;
         $user->password = Hash::make($request->password);

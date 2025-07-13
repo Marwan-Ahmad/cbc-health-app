@@ -50,4 +50,14 @@ class User extends Authenticatable
     {
         return \Carbon\Carbon::parse($this->date_of_birth)->age;
     }
+
+    public function family_members()
+    {
+        return $this->hasMany("App/Models/Family_member", "user_id");
+    }
+
+    public function medical_records()
+    {
+        return $this->hasMany("App/Models/Medical_record", "user_id");
+    }
 }

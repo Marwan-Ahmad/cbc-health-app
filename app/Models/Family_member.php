@@ -21,4 +21,14 @@ class Family_member extends Model
     {
         return \Carbon\Carbon::parse($this->date_of_birth)->age;
     }
+
+    public function user()
+    {
+        return $this->belongsTo("App/Models/User", "user_id");
+    }
+
+    public function medical_records()
+    {
+        return $this->hasMany("App/Models/Medical_record", "family_member_id");
+    }
 }

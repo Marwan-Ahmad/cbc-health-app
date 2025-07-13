@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\authcontroller;
+use App\Http\Controllers\FamilyMemberController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,4 +25,6 @@ Route::post("user/login", [authcontroller::class, "login"]);
 
 Route::group(["middleware" => ['auth:sanctum']], function () {
     Route::get("user/logout", [authcontroller::class, "logout"]);
+    Route::post("user/addmember", [FamilyMemberController::class, "addMember"]);
+    Route::get("user/getMembers", [FamilyMemberController::class, "getallmember"]);
 });

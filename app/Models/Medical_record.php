@@ -18,4 +18,19 @@ class Medical_record extends Model
         "qr_code",
         "analyzed_at",
     ];
+
+    public function user()
+    {
+        return $this->belongsTo("App/Models/User", "user_id");
+    }
+
+    public function family_member()
+    {
+        return $this->belongsTo("App/Models/Family_member", "family_member_id");
+    }
+
+    public function uploaded_pdf()
+    {
+        return $this->hasOne("App/Models/Uploaded_pdf", "medical_record_id");
+    }
 }

@@ -12,4 +12,9 @@ class Uploaded_pdf extends Model
         "file_path",
         "medical_record_id",
     ];
+
+    public function med_record()
+    {
+        return $this->belongsTo("App/Models/Medical_record", "medical_record_id");
+    }
 }
